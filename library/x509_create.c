@@ -180,6 +180,9 @@ int mbedtls_x509_set_extension( mbedtls_asn1_named_data **head, const char *oid,
     return( 0 );
 }
 
+int mbedtls_asn1_write_utf8_string( unsigned char **p, unsigned char *start,
+                                 const char *text, size_t text_len );
+
 /*
  *  RelativeDistinguishedName ::=
  *    SET OF AttributeTypeAndValue
@@ -207,10 +210,15 @@ static int x509_write_name( unsigned char **p, unsigned char *start,
         MBEDTLS_ASN1_CHK_ADD( len, mbedtls_asn1_write_ia5_string( p, start,
                                                   (const char *) name,
                                                   name_len ) );
+    } else if( MBEDTLS_OID_SIZE( MBEDTLS_OID_AT_COUNTRY ) == oid_len &&
+            memcmp( oid, MBEDTLS_OID_AT_COUNTRY, oid_len) == 0) {
+        MBEDTLS_ASN1_CHK_ADD( len, mbedtls_asn1_write_printable_string( p, start,
+                                                        (const char *) name,
+                                                        name_len ) );
     }
     else
     {
-        MBEDTLS_ASN1_CHK_ADD( len, mbedtls_asn1_write_printable_string( p, start,
+        MBEDTLS_ASN1_CHK_ADD( len, mbedtls_asn1_write_utf8_string( p, start,
                                                         (const char *) name,
                                                         name_len ) );
     }
