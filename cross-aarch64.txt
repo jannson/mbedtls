@@ -1,0 +1,4 @@
+#usage: CC=aarch64-openwrt-linux-gcc cmake -DCMAKE_TOOLCHAIN_FILE=../cross-aarch64.txt ..
+set(STAGING_DIR "/soft/1296/build_scripts/OpenWrt-ImageBuilder-rtd1295-mnas_emmc.Linux-x86_64/staging_dir")
+set(CMAKE_C_COMPILER "${STAGING_DIR}/toolchain-aarch64_cortex-a53+neon_gcc-4.9-linaro_glibc-2.19/bin/aarch64-openwrt-linux-gcc")
+set(CMAKE_CXX_COMPILER "${STAGING_DIR}/toolchain-aarch64_cortex-a53+neon_gcc-4.9-linaro_glibc-2.19/bin/aarch64-openwrt-linux-gnu-g++")

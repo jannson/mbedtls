@@ -1,0 +1,6 @@
+# usage:   CC=arm-fw867-linux-uclibcgnueabi-gcc cmake -DCMAKE_TOOLCHAIN_FILE=../cross-arm.txt ..
+# install: make DESTDIR=/projects/source-build/x86/source/mbedtls/install-arm install
+set(STAGING_DIR "/projects/openwrt/arm-fw867-linux-uclibcgnueabi")
+set(CMAKE_C_COMPILER "${STAGING_DIR}/bin/arm-fw867-linux-uclibcgnueabi-gcc")
+set(CMAKE_CXX_COMPILER "${STAGING_DIR}/bin/arm-fw867-linux-uclibcgnueabi-g++")
+
